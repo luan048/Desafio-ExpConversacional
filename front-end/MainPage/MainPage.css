@@ -1,0 +1,30 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+/* Desktop grande */
+@media (min-width: 1401px) {
+    .general-div {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1b1d1c;
+    }
+
+    /* Topo página */
+    .nav-bar {
+        width: 100vw;
+        height: 90px;
+        background-color: #26282b;
+    }
+    /* Fim topo página */
+
+    /* Conteúdo página*/
+    /* Fim conteúdo página */
+
+    /* Rodape */
+    /* Fim rodape */
+}
