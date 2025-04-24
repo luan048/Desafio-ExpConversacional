@@ -1,4 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html, body{
+    width: 100%;
+    height: 100%;
     padding: 0;
     margin: 0;
 }
@@ -14,13 +22,17 @@ html, body{
         background-color: #1b1d1c;
     }
 
-    /* Topo página */
+    /* Elementos navbar */
     .nav-bar {
         width: 100vw;
         height: 90px;
-        background-color: #26282b;
+        background-color: #f2f2f1;
     }
-    /* Fim topo página */
+
+    .logoFuria-navbar {
+        width: 90px;
+    }
+    /* Fim elementos navbar */
 
     /* Conteúdo página*/
     /* Fim conteúdo página */
