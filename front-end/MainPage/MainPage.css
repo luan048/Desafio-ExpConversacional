@@ -12,8 +12,8 @@ body {
     margin: 0;
 }
 
-/* Desktop grande */
-@media (min-width: 1401px) {
+/* Medida para monitor de dektop */
+@media (min-width: 1537px) {  /*Abaixo disso será com medidas para notebooks*/
     .general-div {
         width: 100%;
         height: 100vh;
@@ -21,9 +21,24 @@ body {
         padding: 0;
         box-sizing: border-box;
         background-color: #1b1d1c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* Conteúdo página*/
+    .content-div {
+        display: flex;
+        width: 1750px;
+        height: 650px;
+        border: 2px solid red;
+        font-family: 'SUSE', sans-serif;
+        color: white;
+    }
+
+    .logo-furia {
+        width: 140px;
+    }
     /* Fim conteúdo página */
 
     /* Rodape */
