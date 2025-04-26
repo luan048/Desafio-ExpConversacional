@@ -63,12 +63,12 @@ function MainPage() {
 
                 {/* Falta adicionar link que leva para a página das redes */}
                 <div className="footer-direita">
-                    <FontAwesomeIcon className="icon-x" icon="fa-brands fa-x-twitter" />
-                    <FontAwesomeIcon className="icon-instagram" icon="fa-brands fa-instagram" />
-                    <FontAwesomeIcon className="icon-yt" icon="fa-brands fa-youtube" />
-                    <FontAwesomeIcon className="icon-twitch" icon="fa-brands fa-twitch" />
-                    <FontAwesomeIcon className="icon-ttk" icon="fa-brands fa-tiktok" />
-                    <FontAwesomeIcon className="icon-discord" icon="fa-brands fa-discord" />
+                    <FontAwesomeIcon className="icon-x" icon="fa-brands fa-x-twitter" onClick={() => window.open('https://x.com/FURIA')}/>
+                    <FontAwesomeIcon className="icon-instagram" icon="fa-brands fa-instagram" onClick={() => window.open('https://www.instagram.com/furiagg/')}/>
+                    <FontAwesomeIcon className="icon-yt" icon="fa-brands fa-youtube" onClick={() => window.open('https://www.youtube.com/@FURIAggCS')}/>
+                    <FontAwesomeIcon className="icon-twitch" icon="fa-brands fa-twitch" onClick={() => window.open('https://www.twitch.tv/furiatv')}/>
+                    <FontAwesomeIcon className="icon-ttk" icon="fa-brands fa-tiktok" onClick={() => window.open('https://www.tiktok.com/@furiagg?lang=en')}/>
+                    <FontAwesomeIcon className="icon-discord" icon="fa-brands fa-discord" onClick={() => window.open('https://discord.com/invite/furia')}/>
                 </div>
             </div>
         </>
