@@ -9,6 +9,7 @@ function MainPage() {
             <div className="general-div">
                 <div className="content-div">
 
+                    {/* ELEMENTOS DO LADO ESQUERDO */}
                     <div className="elements-left">
                         <div className="div-title" style={{'display': 'flex', 'marginBottom': '15px', 'marginLeft': '20px'}}>
                             <img src="../imgs/Furia_Esports_logo.png" style={{'width': '70px'}}/> 
@@ -22,7 +23,22 @@ function MainPage() {
                         <button className="button-start">Start Chat</button>
                     </div>
 
-                    <div className="elements-right"></div>
+                    {/* ELEMENTOS DO LADO DIREITO */}
+                    <div className="elements-right">
+                        <div className="title-chat">
+                            <FontAwesomeIcon icon="fa-brands fa-rocketchat" style={{'fontSize': '40px'}}/><p style={{'fontSize': '20px', 'marginTop': '8px', 'marginLeft': '15px'}}>Bot da Tropa</p>
+                        </div>
+
+                        <div className="content-chat"></div>
+
+                        <div className="div-input-chat">
+                            <input type="text" placeholder="Mensagem" className="input-mensg"/>
+                            <div className="div-icon-send"> 
+                                <img src="../imgs/icon-send.png" className="icon-send" />
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
