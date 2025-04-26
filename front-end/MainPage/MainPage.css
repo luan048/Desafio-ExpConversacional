@@ -31,13 +31,33 @@ body {
         display: flex;
         width: 1750px;
         height: 650px;
+        padding: 30px;
         border: 2px solid red;
         font-family: 'SUSE', sans-serif;
         color: white;
     }
 
-    .logo-furia {
-        width: 140px;
+    .elements-left {
+        display: flex;
+        flex-direction: column;
+        margin: 145px;
+        margin-left: 200px;
+        height: 250px;
+    }
+
+    .button-start {
+        background-color: #007aff;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-start:hover {
+        background-color: #0060d8;
     }
     /* Fim conteúdo página */
 
@@ -80,6 +100,17 @@ body {
         cursor: pointer;
         font-size: 20px;
         color: white;
+    }
+
+    .icon-x:hover,
+    .icon-instagram:hover,
+    .icon-yt:hover, 
+    .icon-twitch:hover,
+    .icon-ttk:hover,
+    .icon-discord:hover {
+        background-color: #555;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+        transform: scale(1.1);
     }
     /* Fim rodape */
 }

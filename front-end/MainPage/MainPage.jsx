@@ -10,14 +10,16 @@ function MainPage() {
                 <div className="content-div">
 
                     <div className="elements-left">
-                        <div className="div-title" style={{'display': 'flex'}}>
-                            <img src="../imgs/Furia_Esports_logo.png" className="logo-furia" /> 
-                            <h1>Furia</h1>
+                        <div className="div-title" style={{'display': 'flex', 'marginBottom': '15px', 'marginLeft': '20px'}}>
+                            <img src="../imgs/Furia_Esports_logo.png" style={{'width': '70px'}}/> 
+                            <h1 style={{'marginTop': '20px', 'marginLeft': '10px', 'fontSize': '38px'}}>Furia</h1>
                         </div>
 
-                        <h1>Bem-vindo ao FURIA CS Chat Bot!</h1>
-                        <p style={{'fontFamily': 'Oswald'}}>Converse com nosso bot para receber as últimas notícias, partidas e muito mais</p>
-                        <button>Start Chat</button>
+                        <h1 style={{'fontSize': '38px', 'marginBottom': '10px'}}>Bem-vindo ao FURIA CS Chat Bot!</h1>
+                        <p style={{'fontFamily': 'Oswald', 'marginBottom': '20px'}}>Converse com nosso bot para conhecer ainda mais nossa tropa do CS, receber as últimas notícias, partidas, <br /> 
+                        calendário e te deixar mais pertinho da nossa comunidade e loja oficial. <br />
+                        <span style={{'fontWeight': 'bold'}}>Vem com a gente e sinta a energia furiosa de verdade! #GOFURIA</span></p>
+                        <button className="button-start">Start Chat</button>
                     </div>
 
                     <div className="elements-right"></div>
