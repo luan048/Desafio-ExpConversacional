@@ -92,7 +92,8 @@ body {
     .content-chat {
         width: 697px;
         height: 441px;
-        background-color: white;
+        background-color: #dce3eb;
+        transition: 0.6s;
     }
 
     /* Camada que está por cima do chat para bloquear ações no conteúdo */
