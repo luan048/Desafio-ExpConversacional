@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
-const { getCalendarData } = require('./calendario/calendario.js');
+const { getCalendarData } = require('./calendario/calendario');
+const cors = require('cors')
+
+app.use(cors())
 
 app.get('/api/get-calendar', async (req, res) => {
     const data = await getCalendarData()

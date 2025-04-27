@@ -2,20 +2,19 @@ const { google } = require('googleapis');
 
 async function getCalendarData() {
     const sheets = google.sheets({ version: 'v4', auth: 'AIzaSyCGkRZO0nRHIp8fi69j7q8TmZXXJgKSs_M' })
-
     const spreadsheetId = '15i824h38HiA36sXEPAcEDwE7THRlzz4egFz7geKex64'
 
     try {
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: 'Calendário!A1:C10',
+            range: 'CalendarioCS!A1:C2',
         })
 
         const rows = res.data.values
-        if (rows.length) {
+        if (rows && rows.length) {
             console.log('Calendário de jogos:')
             rows.map((row) => {
-                console.log(`${row[0]}: ${row[1]}`)
+                console.log(`${row[2]} dia ${row[0]} às: ${row[1]}`)
             })
             return rows
         } 
