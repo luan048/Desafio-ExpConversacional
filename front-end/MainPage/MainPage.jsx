@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MainPage.css'
 import '../Icons/icons.js'
@@ -37,11 +37,12 @@ function MainPage() {
 
         if (step === 1) {
             const name = userInput.trim()
-            setUserName(name)
+            const firstName = name.split(' ')[0]
+            setUserName(firstName)
 
             setMessages([
                 ...newMessages,
-                { sender: 'bot', text: `Legal, ${name}! Agora me diz, qual seu email?` }
+                { sender: 'bot', text: `Legal, ${firstName}! Agora me diz, qual seu email?` }
             ])
             setStep(2)
         }
@@ -54,13 +55,33 @@ function MainPage() {
             setMessages([
                 ...newMessages,
                 { sender: 'bot', text: `Valeu, ${userName}! Acabei de guardar aqui.` },
-                {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'}
+                {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'},
+                {text: 'Agenda de jogos'},
+                {text: 'Resultados Recentes'},
+                {text: 'Loja Furiosa'},
+                {text: 'Noticias'},
+                {text: 'Curiosidades'}
             ])
             setStep(3)
         }
 
         setUserInput('')
     }
+
+    // Atualizar Scroll a cada nova mensagem
+    // const messagesEndRef = useRef(null)
+
+    // const scrollToBottom = () => {
+    //     if (messagesEndRef.current) {
+    //         messagesEndRef.current.scrollIntoView({behavior: "smooth"})
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     scrollToBottom()
+    // }, [messages])
+
+    //
 
     return (
         <>
@@ -93,9 +114,11 @@ function MainPage() {
                             {/* CHAT MESSAGES */}
                             <div className="chat-messages">
                                 {messages.map((msg, idx) => (
-                                    <div key={idx} className={`message-${msg.sender}`} >
+                                    <div key={idx} className={`message-${msg.sender || 'sem-sender'}`}>
                                         {msg.sender === 'bot' && <img src="../imgs/Furia_Esports_logo.png" className="logo-bot-chat" />}
-                                        <div className="div-mensagemBot"><span className="mensagens-bot">{msg.text}</span></div>
+                                        <div className={`div-mensagemBot${msg.sender ? '' : '-semSender'}`}>
+                                            <span className="mensagens">{msg.text}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
