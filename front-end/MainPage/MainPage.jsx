@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MainPage.css'
 import '../Icons/icons.js'
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 function MainPage() {
     // Variaveis de desbloqueio e inicio do chat
@@ -30,6 +31,31 @@ function MainPage() {
     }
     //
 
+    const fetchCalendarData = async() => {
+        try{
+            const response = await fetch('http://localhost:3000/api/get-calendar')
+            const data = await response.json()
+
+            if(data && data.length) {
+                setMessages(prevMessages => [
+                    ...prevMessages,
+                    { sender: 'bot', text: 'Aqui está o calendário de jogos:' },
+                    ...data.map(row => ({ sender: 'bot', text: `${row[2]} dia ${row[0]} às ${row[1]}` })),
+                ])
+            }
+            else {
+                setMessages(prevMessages => [
+                    ...prevMessages,
+                    { sender: 'bot', text: 'Desculpe, não encontrei o calendário de jogos.' },
+                ])
+            }
+        }
+        catch(error) {
+            console.log('Erro ao tentar buscar no calendário: ', error);
+            
+        }
+    }
+
     const handleSendMessage = () => {
         if (userInput.trim() === '') return
 
@@ -56,13 +82,24 @@ function MainPage() {
                 ...newMessages,
                 { sender: 'bot', text: `Valeu, ${userName}! Acabei de guardar aqui.` },
                 {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'},
-                {text: 'Agenda de jogos'},
+                {text: 'Calendário de jogos'},
                 {text: 'Resultados Recentes'},
                 {text: 'Loja Furiosa'},
                 {text: 'Noticias'},
                 {text: 'Curiosidades'}
             ])
             setStep(3)
+        }
+        else if(step === 3) {
+            const newMessages = [...messages, {sender: 'user', text: userInput}]
+
+            setMessages([
+                ...newMessages,
+            ])
+            if(userInput.trim().toLowerCase().includes("calendário")) {
+                fetchCalendarData()
+            }
+            setStep(4)
         }
 
         setUserInput('')
