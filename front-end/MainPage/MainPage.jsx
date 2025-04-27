@@ -5,10 +5,61 @@ import './MainPage.css'
 import '../Icons/icons.js'
 
 function MainPage() {
+    // Variaveis de desbloqueio e inicio do chat
+    const [chatStarted, setChatStarted] = useState(false)
     const [chatBloqueado, setChatBloqueado] = useState(true)
+    //
+    const [messages, setMessages] = useState([])
+    const [step, setStep] = useState(0)
 
+    const [userInput, setUserInput] = useState('')
+    const [userName, setUserName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+
+    // Função de desbloqueio e inicio chat
     const startChat = () => {
         setChatBloqueado(false)
+        setChatStarted(true)
+
+        // Inicia as duas primeiras mensagens
+        setMessages([
+            { sender: 'bot', text: 'Fala, Furioso! Preparado pra viver a FURIA hoje?' },
+            { sender: 'bot', text: 'Bora começar. Agora me diz, qual seu nome completo?' }
+        ])
+        setStep(1)
+    }
+    //
+
+    const handleSendMessage = () => {
+        if (userInput.trim() === '') return
+
+        const newMessages = [...messages, { sender: 'user', text: userInput }]
+
+        if (step === 1) {
+            const name = userInput.trim()
+            setUserName(name)
+
+            setMessages([
+                ...newMessages,
+                { sender: 'bot', text: `Legal, ${name}! Agora me diz, qual seu email?` }
+            ])
+            setStep(2)
+        }
+        else if (step === 2) {
+            const newMessages = [...messages, {sender: 'user', text: userInput}]
+
+            const email = userInput.trim()
+            setUserEmail(email)
+
+            setMessages([
+                ...newMessages,
+                { sender: 'bot', text: `Valeu, ${userName}! Acabei de guardar aqui.` },
+                {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'}
+            ])
+            setStep(3)
+        }
+
+        setUserInput('')
     }
 
     return (
@@ -20,7 +71,7 @@ function MainPage() {
                     <div className="elements-left">
                         <div className="div-title" style={{ 'display': 'flex', 'marginBottom': '15px', 'marginLeft': '20px' }}>
                             <img src="../imgs/Furia_Esports_logo.png" style={{ 'width': '70px' }} />
-                            <h1 style={{ 'marginTop': '20px', 'marginLeft': '10px', 'fontSize': '38px' }}>Furia</h1>
+                            <h1 style={{ 'marginTop': '15px', 'marginLeft': '10px', 'fontSize': '38px' }}>Furia</h1>
                         </div>
 
                         <h1 style={{ 'fontSize': '38px', 'marginBottom': '10px' }}>Bem-vindo ao FURIA CS Chat Bot!</h1>
@@ -38,16 +89,34 @@ function MainPage() {
 
                         <div className="content-chat" style={{ opacity: chatBloqueado ? 0.4 : 1 }}>
                             {chatBloqueado && <div className="overlay-bloqueado"></div>}
+
+                            {/* CHAT MESSAGES */}
+                            <div className="chat-messages">
+                                {messages.map((msg, idx) => (
+                                    <div key={idx} className={`message-${msg.sender}`} >
+                                        {msg.sender === 'bot' && <img src="../imgs/Furia_Esports_logo.png" className="logo-bot-chat" />}
+                                        <div className="div-mensagemBot"><span className="mensagens-bot">{msg.text}</span></div>
+                                    </div>
+                                ))}
+                            </div>
+                            {/*  */}
                         </div>
 
                         <div className="div-input-chat">
-                            <input type="text" placeholder="Mensagem" className="input-mensg" />
+                            <input type="text" placeholder="Mensagem" className="input-mensg" 
+                                value={userInput} 
+                                onChange={e => setUserInput(e.target.value)} 
+                                onKeyDown={e => e.key === 'Enter' && handleSendMessage()} 
+                                disabled={chatBloqueado}
+                            />
+                            
                             <div className={chatBloqueado ? 'div-icon-sendDisabled' : 'div-icon-send'}>
-                                <img src="../imgs/icon-send.png" className="icon-send" />
+                                <img src="../imgs/icon-send.png" className="icon-send" onClick={!chatBloqueado ? handleSendMessage : undefined}/>
                             </div>
                         </div>
 
                     </div>
+
                 </div>
             </div>
 
@@ -63,12 +132,12 @@ function MainPage() {
 
                 {/* Falta adicionar link que leva para a página das redes */}
                 <div className="footer-direita">
-                    <FontAwesomeIcon className="icon-x" icon="fa-brands fa-x-twitter" onClick={() => window.open('https://x.com/FURIA')}/>
-                    <FontAwesomeIcon className="icon-instagram" icon="fa-brands fa-instagram" onClick={() => window.open('https://www.instagram.com/furiagg/')}/>
-                    <FontAwesomeIcon className="icon-yt" icon="fa-brands fa-youtube" onClick={() => window.open('https://www.youtube.com/@FURIAggCS')}/>
-                    <FontAwesomeIcon className="icon-twitch" icon="fa-brands fa-twitch" onClick={() => window.open('https://www.twitch.tv/furiatv')}/>
-                    <FontAwesomeIcon className="icon-ttk" icon="fa-brands fa-tiktok" onClick={() => window.open('https://www.tiktok.com/@furiagg?lang=en')}/>
-                    <FontAwesomeIcon className="icon-discord" icon="fa-brands fa-discord" onClick={() => window.open('https://discord.com/invite/furia')}/>
+                    <FontAwesomeIcon className="icon-x" icon="fa-brands fa-x-twitter" onClick={() => window.open('https://x.com/FURIA')} />
+                    <FontAwesomeIcon className="icon-instagram" icon="fa-brands fa-instagram" onClick={() => window.open('https://www.instagram.com/furiagg/')} />
+                    <FontAwesomeIcon className="icon-yt" icon="fa-brands fa-youtube" onClick={() => window.open('https://www.youtube.com/@FURIAggCS')} />
+                    <FontAwesomeIcon className="icon-twitch" icon="fa-brands fa-twitch" onClick={() => window.open('https://www.twitch.tv/furiatv')} />
+                    <FontAwesomeIcon className="icon-ttk" icon="fa-brands fa-tiktok" onClick={() => window.open('https://www.tiktok.com/@furiagg?lang=en')} />
+                    <FontAwesomeIcon className="icon-discord" icon="fa-brands fa-discord" onClick={() => window.open('https://discord.com/invite/furia')} />
                 </div>
             </div>
         </>
