@@ -7,7 +7,7 @@ async function getCalendarData() {
     try {
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: 'CalendarioCS!A1:C2',
+            range: 'CalendarioCS',
         })
 
         const rows = res.data.values
