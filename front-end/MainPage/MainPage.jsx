@@ -31,6 +31,25 @@ function MainPage() {
     }
     //
 
+    const escolhaUser = () => {
+        const newMessages = [...messages, {sender: 'user', text: userInput}]
+
+        const email = userInput.trim()
+        setUserEmail(email)
+
+        setMessages([
+            ...newMessages,
+            { sender: 'bot', text: `Valeu, ${userName}! Acabei de guardar aqui.` },
+            {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'},
+            {text: 'Calendário de jogos'},
+            {text: 'Resultados Recentes'},
+            {text: 'Loja Furiosa'},
+            {text: 'Noticias'},
+            {text: 'Curiosidades'}
+        ])
+        setStep(3)
+    }
+
     const fetchCalendarData = async() => {
         try{
             const response = await fetch('http://localhost:3000/api/get-calendar')
@@ -40,7 +59,7 @@ function MainPage() {
                 setMessages(prevMessages => [
                     ...prevMessages,
                     { sender: 'bot', text: 'Aqui está o calendário de jogos:' },
-                    ...data.map(row => ({ sender: 'bot', text: `${row[2]} dia ${row[0]} às ${row[1]}` })),
+                    ...data.map(row => ({text: `${row[2]} dia ${row[0]} às ${row[1]}` })),
                 ])
             }
             else {
@@ -73,29 +92,14 @@ function MainPage() {
             setStep(2)
         }
         else if (step === 2) {
-            const newMessages = [...messages, {sender: 'user', text: userInput}]
-
-            const email = userInput.trim()
-            setUserEmail(email)
-
-            setMessages([
-                ...newMessages,
-                { sender: 'bot', text: `Valeu, ${userName}! Acabei de guardar aqui.` },
-                {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'},
-                {text: 'Calendário de jogos'},
-                {text: 'Resultados Recentes'},
-                {text: 'Loja Furiosa'},
-                {text: 'Noticias'},
-                {text: 'Curiosidades'}
-            ])
-            setStep(3)
+            escolhaUser()
         }
         else if(step === 3) {
             const newMessages = [...messages, {sender: 'user', text: userInput}]
 
             setMessages([
                 ...newMessages,
-            ])
+            ])    
             if(userInput.trim().toLowerCase().includes("calendário")) {
                 fetchCalendarData()
             }
