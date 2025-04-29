@@ -319,6 +319,14 @@ function MainPage() {
             else if(respostaEscolhasUser.includes("história" && respostaEscolhasUser.includes("cs"))) {
                 contarHistoriaTimeCS()
             }
+            else {
+                const newMessages = [...messages, {sender: 'user', text: userInput}]
+
+                setMessages([
+                    ...newMessages,
+                    {sender: 'bot', text: 'Operação inválida. Digite voltar se quiser continuar'}
+                ])
+            }
             setStep(4)
         }
         else if(step === 4) {
