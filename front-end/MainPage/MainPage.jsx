@@ -20,11 +20,26 @@ function MainPage() {
 
     const respostaEscolhasUser = userInput.trim().toLowerCase()
 
+    const showTyping = () => {
+        return new Promise(resolve => {
+            setMessages(prev => [
+                ...prev,
+                { sender: 'bot', text: '...' }
+            ])
+    
+            setTimeout(() => {
+                setMessages(prev => prev.slice(0, -1))
+                resolve()
+            }, 1000)
+        })
+    }
+
     // Função de desbloqueio e inicio chat
-    const startChat = () => {
+    const startChat = async() => {
         setChatBloqueado(false)
         setChatStarted(true)
 
+        await showTyping()
         // Inicia as duas primeiras mensagens
         setMessages([
             { sender: 'bot', text: 'Fala, Furioso! Preparado pra viver a FURIA hoje?' },
@@ -34,35 +49,49 @@ function MainPage() {
     }
     //
 
-    const escolhaUser = () => {
-        const newMessages = [...messages, {sender: 'user', text: userInput}]
+    
 
+    const escolhaUser = async () => {
+        const newMessages = [...messages, { sender: 'user', text: userInput }]
         const email = userInput.trim()
         setUserEmail(email)
-
+        setMessages(newMessages)
+    
+        await showTyping()
         setMessages([
             ...newMessages,
-            { sender: 'bot', text: `Valeu, ${userName}!` },
-            {sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?'},
-            {text: 'Calendário de jogos'},
-            {text: 'Resultados Recentes'},
-            {text: 'Loja Furiosa'},
-            {text: 'História da Furia'},
-            {text: 'História time de CS da Furia'}
+            { sender: 'bot', text: `Valeu, ${userName}!` }
+        ])
+    
+        await showTyping()
+        setMessages([
+            ...newMessages,
+            { sender: 'bot', text: 'Agora vamos continuar nossa conversa. Me diz ai, o que você gostaria de saber sobre a furia?' },
+            { text: 'Calendário de jogos' },
+            { text: 'Resultados Recentes' },
+            { text: 'Loja Furiosa' },
+            { text: 'História da Furia' },
+            { text: 'História time de CS da Furia' }
         ])
         setStep(3)
-    }
+    }    
 
     const fetchCalendarData = async() => {
         try{
             const response = await fetch('http://localhost:3000/api/get-calendar')
             const data = await response.json()
 
+            await showTyping()
             if(data && data.length) {
                 setMessages(prevMessages => [
                     ...prevMessages,
                     { sender: 'bot', text: 'Aqui está o calendário de jogos:' },
                     ...data.map(row => ({text: `${row[2]} dia ${row[0]} às ${row[1]}` })),
+                ])
+                
+                await showTyping()
+                setMessages(prevMessages => [
+                    ...prevMessages,
                     {sender: 'bot', text: 'Saiba mais sobre os jogos (Digite sua opção)'},
                     {text: 'Somente jogos de hoje'},
                     {text: 'Voltar'}
@@ -96,6 +125,8 @@ function MainPage() {
                 return dia === diaHoje && mes === mesHoje && (ano ? ano === anoHoje : true)
             })
     
+            await showTyping()
+            // Não estão retornando a mensagem digitado pelo usuário
             if (jogosHoje.length > 0) {
                 setMessages(prevMessages => [
                     ...prevMessages,
@@ -123,6 +154,7 @@ function MainPage() {
             const response = await fetch('http://localhost:3000/api/get-results')
             const data = await response.json()
 
+            await showTyping()
             if(data && data.length) {
                 setMessages(prevMessages => [
                     ...prevMessages,
@@ -145,8 +177,9 @@ function MainPage() {
         }
     }
     
-    const encaminhamentoLoja = (input) => {
+    const encaminhamentoLoja = async(input) => {
         const newMessages = [...messages, {sender: 'user', text: input}]
+        await showTyping()
         setMessages([
             ...newMessages
         ])
@@ -225,8 +258,9 @@ function MainPage() {
         
     }
     
-    const filtroProdutoLoja = () => {
+    const filtroProdutoLoja = async() => {
         const newMessages = [...messages, {sender: 'user', text: userInput}]
+        await showTyping()
         setMessages([
             ...newMessages,
             {sender: 'bot', text: 'Certo, vou te encaminhar para nossa loja, mas antes disso, o que você procura? (Digite sua opção)'},
@@ -239,7 +273,8 @@ function MainPage() {
         ])
     }
 
-    const contarHistoriaFuria = () => {
+    const contarHistoriaFuria = async() => {
+        await showTyping()
         setMessages([
             ...messages,
             {sender: 'bot', text: 'A trajetória do time de CS da FURIA teve início em 2017, quando a organização foi criada em Uberlândia-MG pelos fundadores André Akkari, Jaime Pádua e Cris Guedes. Sob a liderança de Nicholas Nogueira, o Guerri, o primeiro elenco de Counter-Strike começou seus treinamentos e rapidamente passou a competir em torneios oficiais, demonstrando seu talento desde o princípio. Já em 2018, a FURIA recebeu o prêmio de Organização do Ano no Gamers Club Awards, e, em 2020, levantou o troféu da ESL Pro League Season 12, consolidando sua posição no cenário internacional. Desde então, a organização vem se destacando, conquistando novos títulos e expandindo sua presença em outras modalidades de esports! 🏆🔥'},
@@ -248,7 +283,8 @@ function MainPage() {
         setStep(5)
     }
 
-    const contarHistoriaTimeCS = () => {
+    const contarHistoriaTimeCS = async() => {
+        await showTyping()
         setMessages([
             ...messages,
             {sender: 'bot', text: 'A trajetória da FURIA teve início em 2017, quando André Akkari, Jaime Pádua e Cris Guedes fundaram a organização em Uberlândia-MG. Seu primeiro time de Counter-Strike foi montado rapidamente e passou a competir, mudando-se para os Estados Unidos com o objetivo de conquistar espaço internacional. Desde então, a FURIA vem se destacando no cenário dos esports, acumulando conquistas e expandindo suas atividades para modalidades como League of Legends e VALORANT. Em 2020, a organização inaugurou um novo escritório em São Paulo e venceu a ESL Pro League. A FURIA segue crescendo, lançando linhas de roupas e participando de projetos sociais. A pantera, símbolo da organização, reflete toda a garra e determinação da equipe em se tornar uma referência mundial nos esports! 🐾🔥'},
