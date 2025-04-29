@@ -16,6 +16,7 @@ function MainPage() {
     const [userName, setUserName] = useState('')
     const [userEmail, setUserEmail] = useState('')
 
+    const chatMessagesRef = useRef(null)
 
     const respostaEscolhasUser = userInput.trim().toLowerCase()
 
@@ -337,20 +338,11 @@ function MainPage() {
         setUserInput('')
     }
 
-    // Atualizar Scroll a cada nova mensagem
-    // const messagesEndRef = useRef(null)
-
-    // const scrollToBottom = () => {
-    //     if (messagesEndRef.current) {
-    //         messagesEndRef.current.scrollIntoView({behavior: "smooth"})
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     scrollToBottom()
-    // }, [messages])
-
-    //
+    useEffect(() => {
+        if(chatMessagesRef.current) {
+            chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight
+        }
+    }, [messages])
 
     return (
         <>
@@ -381,7 +373,7 @@ function MainPage() {
                             {chatBloqueado && <div className="overlay-bloqueado"></div>}
 
                             {/* CHAT MESSAGES */}
-                            <div className="chat-messages">
+                            <div className="chat-messages" ref={chatMessagesRef}>
                                 {messages.map((msg, idx) => (
                                     <div key={idx} className={`message-${msg.sender || 'sem-sender'}`}>
                                         {msg.sender === 'bot' && <img src="../imgs/Furia_Esports_logo.png" className="logo-bot-chat" />}
