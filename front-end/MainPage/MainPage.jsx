@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MainPage.css'
 import '../Icons/icons.js'
-import { text } from "@fortawesome/fontawesome-svg-core";
 
 function MainPage() {
     // Variaveis de desbloqueio e inicio do chat
@@ -150,7 +149,6 @@ function MainPage() {
             console.error('Erro ao buscar jogos de hoje:', error)
         }
     }
-    
 
     const fetchLastResults = async() => {
         try{
@@ -262,8 +260,7 @@ function MainPage() {
             setTimeout(() => {
                 window.location.href = 'https://www.furia.gg/'
             }, 3000)
-        }
-        
+        }    
     }
     
     const filtroProdutoLoja = async() => {
@@ -452,7 +449,6 @@ function MainPage() {
                     <img src="./imgs/Logo-Furia-navbar-white.svg" className="logoFuria-footer" style={{ 'width': '75px' }} />
                 </div>
 
-                {/* Falta adicionar link que leva para a página das redes */}
                 <div className="footer-direita">
                     <FontAwesomeIcon className="icon-x" icon="fa-brands fa-x-twitter" onClick={() => window.open('https://x.com/FURIA')} />
                     <FontAwesomeIcon className="icon-instagram" icon="fa-brands fa-instagram" onClick={() => window.open('https://www.instagram.com/furiagg/')} />
