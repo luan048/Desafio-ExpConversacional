@@ -506,8 +506,8 @@
 }
 /*  */
 
-/* Responsividade para Celulares menores */
-@media (min-width: 360px) and (max-width: 415px) {
+/* Responsividade para Celulares medios */
+@media (min-width: 391px) and (max-width: 415px) {
     .general-div {
         overflow-x: hidden;
         padding: 8px;
@@ -623,5 +623,241 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
+}
+/*  */
+
+/* Responsividade para celulares menores */
+@media (min-width: 376px) and (max-width: 390px) {
+    .general-div {
+        overflow-x: hidden;
+        padding: 8px;
+    }
+
+    .content-div {
+        display: block;
+        margin-top: 255px;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        border: none;
+        box-sizing: border-box;
+    }
+
+    .elements-left {
+        width: 100%;
+        height: auto;
+        margin: 15px 0;
+        padding: 0 10px;
+    }
+
+    .button-start {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .elements-right {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .title-chat,
+    .content-chat {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .content-chat {
+        height: 280px;
+        padding: 12px;
+    }
+
+    .chat-messages {
+        max-height: 240px;
+        padding-right: 8px;
+    }
+    
+    .message-bot,
+    .message-sem-sender {
+        width: 90%;
+        max-width: none;
+    }
+
+    .message-user {
+        text-align: right;
+        margin-left: 70px;
+        
+        align-self: flex-end;
+        background-color: #2f2f2f;
+        color: #fff;
+        border-radius: 10px;
+        max-width: 90%;
+        word-break: break-word;
+        text-align: left;
+    }
+    
+    .div-input-chat {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .input-mensg {
+        width: 90%;
+        font-size: 16px;
+        margin: 8px 0;
+        padding-left: 15px;
+    }
+
+    .div-icon-send,
+    .div-icon-sendDisabled {
+        margin-top: 10px;
+        width: 50px;
+        height: 38px;
+    }
+
+    .icon-send {
+        width: 30px;
+        height: 30px;
+        margin-left: 8px;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 10px;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-esquer,
+    .footer-centro,
+    .footer-direita {
+        width: 100%;
+    }
+
+    .footer-direita {
+        margin-left: 100px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 360px) and (max-width: 375px) {
+    .general-div {
+        overflow-x: hidden;
+        padding: 8px;
+    }
+
+    .content-div {
+        display: block;
+        margin-top: 350px;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        border: none;
+        box-sizing: border-box;
+    }
+
+    .elements-left {
+        width: 100%;
+        height: auto;
+        margin: 15px 0;
+        padding: 0 10px;
+    }
+
+    .button-start {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .elements-right {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .title-chat,
+    .content-chat {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .content-chat {
+        height: 280px;
+        padding: 12px;
+    }
+
+    .chat-messages {
+        max-height: 240px;
+        padding-right: 8px;
+    }
+    
+    .message-bot,
+    .message-sem-sender {
+        width: 90%;
+        max-width: none;
+    }
+
+    .message-user {
+        text-align: right;
+        margin-left: 70px;
+        
+        align-self: flex-end;
+        background-color: #2f2f2f;
+        color: #fff;
+        border-radius: 10px;
+        max-width: 90%;
+        word-break: break-word;
+        text-align: left;
+    }
+    
+    .div-input-chat {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .input-mensg {
+        width: 90%;
+        font-size: 16px;
+        margin: 8px 0;
+        padding-left: 15px;
+    }
+
+    .div-icon-send,
+    .div-icon-sendDisabled {
+        margin-top: 10px;
+        width: 50px;
+        height: 38px;
+    }
+
+    .icon-send {
+        width: 30px;
+        height: 30px;
+        margin-left: 8px;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 10px;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-esquer,
+    .footer-centro,
+    .footer-direita {
+        width: 100%;
+    }
+
+    .footer-direita {
+        margin-left: 100px;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 /*  */
