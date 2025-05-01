@@ -77,7 +77,7 @@ function MainPage() {
     const fetchCalendarData = async() => {
         const newMessages = [...messages, {sender: 'user', text: userInput}]
         try{
-            const response = await fetch('http://localhost:3000/api/get-calendar')
+            const response = await fetch('https://backend-chat-delta.vercel.app/api/get-calendar')
             const data = await response.json()
 
             await showTyping()
@@ -112,7 +112,7 @@ function MainPage() {
     const filtrarJogosHoje = async () => {
         const newMessages = [...messages, {sender: 'user', text: userInput}]
         try {
-            const response = await fetch('http://localhost:3000/api/get-calendar')
+            const response = await fetch('https://backend-chat-delta.vercel.app/api/get-calendar')
             const data = await response.json()
     
             const hoje = new Date()
@@ -152,7 +152,7 @@ function MainPage() {
 
     const fetchLastResults = async() => {
         try{
-            const response = await fetch('http://localhost:3000/api/get-results')
+            const response = await fetch('https://backend-chat-delta.vercel.app/api/get-results')
             const data = await response.json()
 
             await showTyping()
@@ -292,7 +292,7 @@ function MainPage() {
         await showTyping()
         setMessages(prevMessages => [
             ...prevMessages,
-            {sender: 'bot', text: 'A trajetória da FURIA teve início em 2017, quando André Akkari, Jaime Pádua e Cris Guedes fundaram a organização em Uberlândia-MG. Seu primeiro time de Counter-Strike foi montado rapidamente e passou a competir, mudando-se para os Estados Unidos com o objetivo de conquistar espaço internacional. Desde então, a FURIA vem se destacando no cenário dos esports, acumulando conquistas e expandindo suas atividades para modalidades como League of Legends e VALORANT. Em 2020, a organização inaugurou um novo escritório em São Paulo e venceu a ESL Pro League. A FURIA segue crescendo, lançando linhas de roupas e participando de projetos sociais. A pantera, símbolo da organização, reflete toda a garra e determinação da equipe em se tornar uma referência mundial nos esports! 🐾🔥'},
+            {sender: 'bot', text: 'O time de CS da FURIA teve início em 2017, pouco tempo depois que André Akkari, Jaime Pádua e Cris Guedes fundaram a organização da Furia em Uberlândia-MG. Seu primeiro time de Counter-Strike foi montado rapidamente e passou a competir, mudando-se para os Estados Unidos com o objetivo de conquistar espaço internacional. Desde então, a FURIA vem se destacando no cenário dos esports, acumulando conquistas e expandindo suas atividades para modalidades como League of Legends e VALORANT. Em 2020, a organização inaugurou um novo escritório em São Paulo e venceu a ESL Pro League. A FURIA segue crescendo, lançando linhas de roupas e participando de projetos sociais. A pantera, símbolo da organização, reflete toda a garra e determinação da equipe em se tornar uma referência mundial nos esports! 🐾🔥'},
             {text: '(Digite voltar para iniciar um novo chat)'}
         ])
         setStep(6)
@@ -349,10 +349,10 @@ function MainPage() {
                 setUserInput('')
                 return
             }
-            else if(respostaEscolhasUser.includes("história")) {
+            else if(respostaEscolhasUser.includes("história") && !respostaEscolhasUser.includes("cs")) {
                 contarHistoriaFuria()
             }
-            else if(respostaEscolhasUser.includes("história" && respostaEscolhasUser.includes("cs"))) {
+            else if(respostaEscolhasUser.includes("história") && respostaEscolhasUser.includes("cs")) {
                 contarHistoriaTimeCS()
             }
             else {
