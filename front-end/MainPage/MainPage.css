@@ -11,6 +11,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 .general-div {
     width: 100%;
     height: 100vh;
@@ -627,7 +631,7 @@
 /*  */
 
 /* Responsividade para celulares menores */
-@media (min-width: 376px) and (max-width: 390px) {
+@media (min-width: 375px) and (max-width: 391px) {
     .general-div {
         overflow-x: hidden;
         padding: 8px;
@@ -635,7 +639,7 @@
 
     .content-div {
         display: block;
-        margin-top: 255px;
+        margin-top: 340px;
         width: 100%;
         height: auto;
         padding: 10px;
