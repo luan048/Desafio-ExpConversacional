@@ -282,7 +282,7 @@ function MainPage() {
         await showTyping()
         setMessages(prevMessages => [
             ...prevMessages,
-            {sender: 'bot', text: 'A trajetória do time de CS da FURIA teve início em 2017, quando a organização foi criada em Uberlândia-MG pelos fundadores André Akkari, Jaime Pádua e Cris Guedes. Sob a liderança de Nicholas Nogueira, o Guerri, o primeiro elenco de Counter-Strike começou seus treinamentos e rapidamente passou a competir em torneios oficiais, demonstrando seu talento desde o princípio. Já em 2018, a FURIA recebeu o prêmio de Organização do Ano no Gamers Club Awards, e, em 2020, levantou o troféu da ESL Pro League Season 12, consolidando sua posição no cenário internacional. Desde então, a organização vem se destacando, conquistando novos títulos e expandindo sua presença em outras modalidades de esports! 🏆🔥'},
+            {sender: 'bot', text: 'A trajetória FURIA teve início em 2017, quando a organização foi criada em Uberlândia-MG pelos fundadores André Akkari, Jaime Pádua e Cris Guedes. Sob a liderança de Nicholas Nogueira, o Guerri, o primeiro elenco de Counter-Strike começou seus treinamentos e rapidamente passou a competir em torneios oficiais, demonstrando seu talento desde o princípio. Já em 2018, a FURIA recebeu o prêmio de Organização do Ano no Gamers Club Awards, e, em 2020, levantou o troféu da ESL Pro League Season 12, consolidando sua posição no cenário internacional. Desde então, a organização vem se destacando, conquistando novos títulos e expandindo sua presença em outras modalidades de esports! 🏆🔥'},
             {text: '(Digite voltar para iniciar um novo chat)'}
         ])
         setStep(5)
